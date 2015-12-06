@@ -1,14 +1,29 @@
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+pkg/
+
 # IDE
 /.idea/*
 
-# Vagrant
-/.vagrant/*
-
 # Berkshelf
-/cookbooks/*
+.vagrant
+/cookbooks
+Berksfile.lock
+
+# Bundler
+Gemfile.lock
+.bundle/*
+
+# TestKitchen
+.kitchen/
+.kitchen.local.yml
+
 
 # CakePHP 3
-
 /vendor/*
 /config/app.php
 /tmp/*
@@ -18,3 +33,4 @@
 # gitkeep
 !.gitkeep
 !empty
+
