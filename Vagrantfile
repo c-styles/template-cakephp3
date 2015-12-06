@@ -55,4 +55,14 @@ Vagrant.configure(2) do |config|
       rpm -q chefdk || curl -sL https://www.chef.io/chef/install.sh | bash -s -- -v 0.10.0 -P chefdk || exit $?
     SCRIPT
   end
+  # Berkshelfでcookbookを集める
+  config.vm.provision "berks_vendor", type: "shell" do |shell|
+  shell.privileged = false
+  shell.inline = <<-SCRIPT
+        (
+          cd /vagrant || exit $?
+          rm -rf cookbooks && rm -rf Berksfile.lock && berks vendor cookbooks || exit $?
+        )
+    SCRIPT
+  end
 end
