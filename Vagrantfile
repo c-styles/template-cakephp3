@@ -40,4 +40,19 @@ Vagrant.configure(2) do |config|
     config.hostmanager.enabled = false
     config.hostmanager.manage_host = false
   end
+
+  # プロビジョニング
+  # プロビジョニングに最低限必要な物を事前にインストールする
+  config.vm.provision 'yum_install', type: 'shell' do |shell|
+  shell.inline = <<-SCRIPT
+      yum -y install wget git rsync || exit $?
+    SCRIPT
+  end
+
+  # バージョン固定(0.10.0)したChefDKをインストールする
+  config.vm.provision 'chefdk_install', type: 'shell' do |shell|
+  shell.inline = <<-SCRIPT
+      rpm -q chefdk || curl -sL https://www.chef.io/chef/install.sh | bash -s -- -v 0.10.0 -P chefdk || exit $?
+    SCRIPT
+  end
 end
