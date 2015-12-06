@@ -4,6 +4,9 @@
 # Vagrant
 /.vagrant/*
 
+# Berkshelf
+/cookbooks/*
+
 # CakePHP 3
 
 /vendor/*
