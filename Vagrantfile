@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
   # SSH Agentを利用可能にする
   config.ssh.forward_agent = true
   # CentOS 7.1汎用
-  config.vm.box = 'bento/centos-7.1'
+  config.vm.box = 'bento/centos-6.7'
   # プライベートアドレス
   config.vm.network 'private_network', ip: '192.168.50.10'
   # 共有フォルダの設定
