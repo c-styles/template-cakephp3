@@ -1,6 +1,9 @@
 # IDE
 /.idea/*
 
+# Vagrant
+/.vagrant/*
+
 # CakePHP 3
 
 /vendor/*
