@@ -1,0 +1,24 @@
+{
+    "name": "common",
+    "description": "",
+    "json_class": "Chef::Role",
+    "default_attributes": {
+        "yum": {
+            "epel": {
+                "enabled": false
+            },
+            "remi": {
+                "enabled": false
+            }
+        }
+    },
+    "override_attributes": {
+    },
+    "chef_type": "role",
+    "run_list": [
+        "recipe[yum-remi-chef::remi]",
+        "recipe[yum-epel::default]"
+    ],
+    "env_run_lists": {
+    }
+}
