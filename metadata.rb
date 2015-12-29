@@ -10,3 +10,6 @@ supports 'centos' '~>6'
 
 depends 'yum-epel', '~> 0.6.5'
 depends 'yum-remi-chef', '~> 1.0.3'
+depends 'mysql', '~> 6.1.2'
+depends 'database', '~> 4.0.9'
+depends 'mysql2_chef_gem', '~> 1.0.2'

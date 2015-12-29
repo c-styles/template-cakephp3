@@ -3,7 +3,9 @@
     "fqdn": "192.168.33.10",
     "chef_environment": "development",
     "run_list": [
-        "role[common]"
+        "role[common]",
+        "recipe[template-cakephp3::mysql-client]",
+        "recipe[template-cakephp3::mysql-server]"
     ],
     "automatic": {
     }
