@@ -63,4 +63,9 @@ Vagrant.configure(2) do |config|
     shell.path = './shells/berks_vendor.sh'
     shell.args = ['/tmp/vagrant']
   end
+  config.vm.provision 'shell' do |shell|
+    shell.name = 'chef_client_local_mode'
+    shell.path = './shells/chef_client_local_mode.sh'
+    shell.args = ['/tmp/vagrant','./nodes/vagrant.json']
+  end
 end
