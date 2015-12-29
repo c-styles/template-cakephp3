@@ -46,3 +46,7 @@ end
 end
 
 include_recipe 'php::default'
+
+php_pear "zip" do
+    action :install
+end
