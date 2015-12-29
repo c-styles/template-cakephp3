@@ -1,0 +1,10 @@
+{
+    "name": "vagrant",
+    "fqdn": "192.168.33.10",
+    "chef_environment": "development",
+    "run_list": [
+        "role[common]"
+    ],
+    "automatic": {
+    }
+}
