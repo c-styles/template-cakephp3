@@ -15,6 +15,7 @@
                 "php-pear",
                 "php-mbstring",
                 "php-mcrypt",
+                "php-pdo",
                 "php-mysqlnd",
                 "php-intl",
                 "php-phpunit-PHPUnit",
