@@ -5,7 +5,9 @@
     "run_list": [
         "role[common]",
         "recipe[template-cakephp3::mysql-client]",
-        "recipe[template-cakephp3::mysql-server]"
+        "recipe[template-cakephp3::mysql-server]",
+        "recipe[template-cakephp3::httpd-web]",
+        "role[php]"
     ],
     "automatic": {
     }

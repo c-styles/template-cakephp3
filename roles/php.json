@@ -1,0 +1,31 @@
+{
+    "name": "php",
+    "description": "",
+    "json_class": "Chef::Role",
+    "default_attributes": {
+    },
+    "override_attributes": {
+        "php": {
+            "package_options": "--enablerepo=remi-php70,remi",
+            "packages": [
+                "php",
+                "php-opcache",
+                "php-devel",
+                "php-cli",
+                "php-pear",
+                "php-mbstring",
+                "php-mcrypt",
+                "php-mysqlnd",
+                "php-intl",
+                "php-phpunit-PHPUnit",
+                "php-pecl-xdebug"
+            ]
+        }
+    },
+    "chef_type": "role",
+    "run_list": [
+        "recipe[template-cakephp3::php]"
+    ],
+    "env_run_lists": {
+    }
+}
