@@ -53,8 +53,14 @@ Vagrant.configure(2) do |config|
   end
   config.vm.provision 'shell' do |shell|
     shell.privileged = false
+    shell.name = 'prepare_vagrant_workspace'
+    shell.path = './shells/prepare_vagrant_workspace.sh'
+    shell.args = ['/vagrant/','/tmp/vagrant']
+  end
+  config.vm.provision 'shell' do |shell|
+    shell.privileged = false
     shell.name = 'berks_vendor'
     shell.path = './shells/berks_vendor.sh'
-    shell.args = '/vagrant'
+    shell.args = ['/tmp/vagrant']
   end
 end
