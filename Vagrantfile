@@ -69,4 +69,9 @@ Vagrant.configure(2) do |config|
     shell.path = './shells/chef_client_local_mode.sh'
     shell.args = ['/tmp/vagrant','./nodes/vagrant.json']
   end
+  config.vm.provision 'shell' do |shell|
+    shell.name = 'composer_install'
+    shell.path = './shells/composer_install.sh'
+    shell.args = ['/tmp/vagrant']
+  end
 end
