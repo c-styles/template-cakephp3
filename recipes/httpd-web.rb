@@ -14,3 +14,10 @@ httpd_service "#{instance_name}" do
     action [:create, :start]
 end
 
+
+httpd_config 'vagrant' do
+    instance "#{instance_name}"
+    source 'vagrant.erb'
+    action :create
+    notifies :restart, "httpd_service[#{instance_name}]"
+end
