@@ -47,6 +47,15 @@ end
 
 include_recipe 'php::default'
 
-php_pear "zip" do
+php_pear 'zip' do
     action :install
+end
+
+# cookbookがうまく対応していないので自前で行う
+package 'php-fpm' do
+    action :install
+    options '--enablerepo=remi-php70,remi'
+end
+service 'php-fpm' do
+    action [:enable, :start]
 end
