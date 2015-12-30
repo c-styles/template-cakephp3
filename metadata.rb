@@ -8,6 +8,7 @@ version          '0.1.0'
 
 supports 'centos' '~>6'
 
+depends 'selinux', '~> 0.9.0'
 depends 'yum-epel', '~> 0.6.5'
 depends 'yum-remi-chef', '~> 1.0.3'
 depends 'mysql', '~> 6.1.2'

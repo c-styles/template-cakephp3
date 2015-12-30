@@ -10,12 +10,16 @@
             "remi": {
                 "enabled": false
             }
+        },
+        "selinux": {
+            "state": "disabled"
         }
     },
     "override_attributes": {
     },
     "chef_type": "role",
     "run_list": [
+        "recipe[selinux::default]",
         "recipe[yum-remi-chef::remi]",
         "recipe[yum-epel::default]"
     ],
