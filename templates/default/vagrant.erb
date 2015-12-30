@@ -1,8 +1,10 @@
 <VirtualHost *:80>
     DocumentRoot "/vagrant/webroot"
+    ProxyPassMatch \.(?:ico|png|gif|jpeg|jpg|css|js|html|php|json|xml)$ !
+    ProxyPassMatch ^(.*)$ fcgi://127.0.0.1:9000/vagrant/webroot/index.php$1
     <Directory /vagrant/>
-    Options Indexes FollowSymLinks Includes ExecCGI
-    AllowOverride All
+        Options Indexes FollowSymLinks Includes ExecCGI
+        AllowOverride All
     </Directory>
 </VirtualHost>
 

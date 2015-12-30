@@ -21,3 +21,15 @@ httpd_config 'vagrant' do
     action :create
     notifies :restart, "httpd_service[#{instance_name}]"
 end
+
+httpd_module 'proxy' do
+    instance "#{instance_name}"
+    action :create
+    notifies :restart, "httpd_service[#{instance_name}]"
+end
+
+httpd_module 'proxy_fcgi' do
+    instance "#{instance_name}"
+    action :create
+    notifies :restart, "httpd_service[#{instance_name}]"
+end
