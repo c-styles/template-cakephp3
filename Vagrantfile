@@ -12,19 +12,25 @@ Vagrant.configure(2) do |config|
   # プライベートアドレス
   config.vm.network 'private_network', ip: '192.168.50.10'
   # 共有フォルダの設定
-  config.vm.synced_folder './', '/vagrant', owner: 'vagrant', group: 'vagrant', nfs: false
+  # VirtualBox共有フォルダは機能制限があるためrsyncを利用
+  config.vm.synced_folder './', '/vagrant', owner: 'vagrant', group: 'vagrant', type: 'rsync',
+    rsync__exclude: %w(
+      .git
+      .vagrant
+      /vendor
+      /packer_cache
+      /cookbooks
+      /Gemfile.lock
+      /Berksfile.lock
+      .idea
+    ),
+    rsync__args: %w(
+      --verbose
+      --archive
+      --delete
+    )
   # VirtualBox独自設定
   config.vm.provider :virtualbox do |vb|
-    # 共有フォルダWindows対策
-    vb.customize [
-                   'setextradata', :id,
-                   'VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled',  0
-                 ]
-    # 共有フォルダWindows対策
-    vb.customize [
-                   'setextradata', :id,
-                   'VBoxInternal2/SharedFoldersEnableSymlinksCreate', '1'
-                 ]
     # メモリ増設
     vb.customize ['modifyvm', :id, '--memory', '1024']
     # 準仮想化
@@ -54,24 +60,18 @@ Vagrant.configure(2) do |config|
   end
   config.vm.provision 'shell' do |shell|
     shell.privileged = false
-    shell.name = 'prepare_vagrant_workspace'
-    shell.path = './shells/prepare_vagrant_workspace.sh'
-    shell.args = ['/vagrant/','/tmp/vagrant']
-  end
-  config.vm.provision 'shell' do |shell|
-    shell.privileged = false
     shell.name = 'berks_vendor'
     shell.path = './shells/berks_vendor.sh'
-    shell.args = ['/tmp/vagrant']
+    shell.args = %w(/vagrant)
   end
   config.vm.provision 'shell' do |shell|
     shell.name = 'chef_client_local_mode'
     shell.path = './shells/chef_client_local_mode.sh'
-    shell.args = ['/tmp/vagrant','./nodes/vagrant.json']
+    shell.args = %w(/vagrant ./nodes/vagrant.json)
   end
   config.vm.provision 'shell' do |shell|
     shell.name = 'composer_install'
     shell.path = './shells/composer_install.sh'
-    shell.args = ['/tmp/vagrant']
+    shell.args = %w(/vagrant)
   end
 end
