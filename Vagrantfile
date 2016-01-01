@@ -28,7 +28,8 @@ Vagrant.configure(2) do |config|
       --verbose
       --archive
       --delete
-    )
+    ),
+    rsync__verbose: true
   # VirtualBox独自設定
   config.vm.provider :virtualbox do |vb|
     # メモリ増設
